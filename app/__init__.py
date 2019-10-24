@@ -5,7 +5,7 @@ import requests
 
 VALID_HOSTNAMES = [
     "www.virustotal.com",
-    "www.hybrid-analysis.com"
+    "www.malshare.com"
 ]
 
 
@@ -17,6 +17,7 @@ def validate_link(link):
 
 def link_check(url):
     response = requests.get(url)
+    print(url)
     print(response.status_code)
     return response.status_code == 200
 

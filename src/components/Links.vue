@@ -22,11 +22,16 @@ import Link from "@/components/Link.vue";
 })
 export default class Links extends Vue {
   private services = Services;
-  public hash =
-    "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f";
+  public hash!: string;
 
-  mounted() {
+  created() {
     this.hash = this.$route.params.hash;
   }
 }
 </script>
+
+<style scoped>
+.links hr {
+  margin: 1rem 0;
+}
+</style>

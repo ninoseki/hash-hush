@@ -7,14 +7,9 @@
     </figure>
     <div class="media-content">
       <div class="content">
+        <p>{{ service.name }}</p>
         <a v-bind:href="service.link(hash)" target="_blank">{{ hash }}</a>
       </div>
-      <nav class="level is-mobile">
-        <div class="level-left">
-          <button v-if="validLink" class="button is-small is-success level-item">Found</button>
-          <button v-else class="button is-small is-danger level-item">Not found</button>
-        </div>
-      </nav>
     </div>
   </div>
 </template>
@@ -25,10 +20,15 @@ import axios from "axios";
 
 import { Service } from "@/lib/types";
 
+import Status from "@/components/Status.vue";
+
 @Component({
   props: {
     hash: String,
     service: Object as () => Service
+  },
+  components: {
+    Status
   }
 })
 export default class Link extends Vue {
@@ -37,12 +37,14 @@ export default class Link extends Vue {
   public validLink: boolean = true;
 
   async created() {
-    const link = this.service.link(this.hash);
-    this.validLink = await this.linkCheck(link);
+    if (this.service.checkable) {
+      this.validLink = await this.linkCheck();
+    }
   }
 
-  async linkCheck(link: string): Promise<boolean> {
+  async linkCheck(): Promise<boolean> {
     try {
+      const link = this.service.link(this.hash);
       const response = await axios.get("/check", { params: { link: link } });
       const data = response.data;
       if ("valid" in data) {
@@ -60,10 +62,6 @@ export default class Link extends Vue {
 </script>
 
 <style scoped>
-.link {
-  margin-top: 10px;
-}
-
 .link img {
   margin-top: 5px;
 }
