@@ -1,2 +1,4 @@
 import { VirusTotal } from "./virustotal";
-export const Services = [new VirusTotal()];
+import { HybridAnalysis } from "./hybridanalysis";
+
+export const Services = [new VirusTotal(), new HybridAnalysis()];
