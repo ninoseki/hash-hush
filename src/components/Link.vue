@@ -18,19 +18,13 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import axios from "axios";
 
 import { Service } from "@/lib/types";
-
-import Status from "@/components/Status.vue";
 
 @Component({
   props: {
     hash: String,
     service: Object as () => Service
-  },
-  components: {
-    Status
   }
 })
 export default class Link extends Vue {
