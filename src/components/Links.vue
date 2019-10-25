@@ -32,6 +32,6 @@ export default class Links extends Vue {
 
 <style scoped>
 .links hr {
-  margin: 1rem 0;
+  margin: 10px 0;
 }
 </style>

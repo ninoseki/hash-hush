@@ -1,8 +1,10 @@
-import { VirusTotal } from "./virustotal";
+import { Apklab } from "./apklab";
 import { HybridAnalysis } from "./hybridanalysis";
 import { JoeSandbox } from "./joesandbox";
-import { Apklab } from "./apklab";
 import { MalShare } from "./malshare";
+import { OTX } from "./otx";
+import { VirusBay } from "./virusbay";
+import { VirusTotal } from "./virustotal";
 import { VxCube } from "./vxcube";
 
 export const Services = [
@@ -10,6 +12,8 @@ export const Services = [
   new HybridAnalysis(),
   new JoeSandbox(),
   new MalShare(),
+  new OTX(),
+  new VirusBay(),
   new VxCube(),
   new Apklab()
 ];

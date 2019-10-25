@@ -14,6 +14,6 @@ export class Apklab implements Service {
   }
 
   public link(hash: string): string {
-    return this.baseURL + `apk.html?hash=${hash}`;
+    return this.baseURL + `/apk.html?hash=${hash}`;
   }
 }

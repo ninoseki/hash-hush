@@ -7,7 +7,9 @@
     </figure>
     <div class="media-content">
       <div class="content">
-        <p>{{ service.name }}</p>
+        <p>
+          <strong>{{ service.name }}</strong>
+        </p>
         <a v-bind:href="service.link(hash)" target="_blank">{{ hash }}</a>
       </div>
     </div>
@@ -34,30 +36,6 @@ import Status from "@/components/Status.vue";
 export default class Link extends Vue {
   public hash!: string;
   public service!: Service;
-  public validLink: boolean = true;
-
-  async created() {
-    if (this.service.checkable) {
-      this.validLink = await this.linkCheck();
-    }
-  }
-
-  async linkCheck(): Promise<boolean> {
-    try {
-      const link = this.service.link(this.hash);
-      const response = await axios.get("/check", { params: { link: link } });
-      const data = response.data;
-      if ("valid" in data) {
-        return data.valid;
-      } else {
-        return false;
-      }
-    } catch (error) {
-      const data = error.response.data;
-      console.error(data);
-      return false;
-    }
-  }
 }
 </script>
 
